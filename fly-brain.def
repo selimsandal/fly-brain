@@ -38,7 +38,8 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
     export PATH="/opt/miniconda3/bin:${PATH}"
 
     # ---- Accept Anaconda ToS non-interactively ----
-    conda config --set anaconda_tos_accepted true
+    # https://github.com/anaconda/conda-anaconda-tos
+    export CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
 
     # ---- Create conda environment from environment.yml ----
     conda env create -f /opt/fly-brain/environment.yml
