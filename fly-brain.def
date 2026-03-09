@@ -11,7 +11,7 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
     export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
     export PYTHONUNBUFFERED=1
     export NESTGPU_INSTALL=/opt/nest-gpu-install
-    export PYTHONPATH="${NESTGPU_INSTALL}/lib/python3.10/site-packages:${PYTHONPATH}"
+    export PYTHONPATH="/opt/fly-brain/code:${NESTGPU_INSTALL}/lib/python3.10/site-packages:${PYTHONPATH}"
 
 %files
     environment.yml /opt/fly-brain/environment.yml
