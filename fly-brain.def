@@ -37,6 +37,9 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
     rm /tmp/miniconda.sh
     export PATH="/opt/miniconda3/bin:${PATH}"
 
+    # ---- Accept Anaconda ToS and disable plugins that prompt interactively ----
+    export CONDA_NO_PLUGINS=true
+
     # ---- Create conda environment from environment.yml ----
     conda env create -f /opt/fly-brain/environment.yml
     conda clean -afy
