@@ -84,8 +84,12 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
     mkdir -p /opt/fly-brain/data/results
 
 %runscript
+    # SIF is read-only — redirect writable outputs to /tmp
+    export FLY_BRAIN_RESULTS=/tmp/fly-brain-results
+    mkdir -p "$FLY_BRAIN_RESULTS/results"
     cd /opt/fly-brain
-    exec /opt/miniconda3/envs/brain-fly/bin/python main.py "$@"
+    exec /opt/miniconda3/envs/brain-fly/bin/python main.py \
+        --log_file "$FLY_BRAIN_RESULTS/benchmarks.log" "$@"
 
 %help
     Drosophila fly brain LIF benchmark container.

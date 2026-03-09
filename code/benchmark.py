@@ -31,12 +31,13 @@ N_RUN_VALUES = [1, 30]
 # Paths and Constants
 # ============================================================================
 current_dir = Path(__file__).resolve().parent
-output_dir = current_dir / 'output'
+_results_dir = Path(os.environ.get('FLY_BRAIN_RESULTS', current_dir / '../data')).resolve()
+output_dir = _results_dir / 'output'
 path_comp = (current_dir / '../data/2025_Completeness_783.csv').resolve()
 path_con = (current_dir / '../data/2025_Connectivity_783.parquet').resolve()
-path_res = (current_dir / '../data/results').resolve()
-path_wt = (current_dir / '../data').resolve()
-csv_path = (current_dir / '../data/benchmark-results.csv').resolve()
+path_res = _results_dir / 'results'
+path_wt = _results_dir
+csv_path = _results_dir / 'benchmark-results.csv'
 
 # ============================================================================
 # Experiment Definitions
