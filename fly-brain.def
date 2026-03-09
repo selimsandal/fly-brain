@@ -11,15 +11,18 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
     export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
     export PYTHONUNBUFFERED=1
     export NESTGPU_INSTALL=/opt/nest-gpu-install
-    export PYTHONPATH="/opt/fly-brain/code:${NESTGPU_INSTALL}/lib/python3.10/site-packages:${PYTHONPATH}"
+    export PYTHONPATH="${NESTGPU_INSTALL}/lib/python3.10/site-packages:${PYTHONPATH}"
 
 %files
     environment.yml /opt/fly-brain/environment.yml
     main.py /opt/fly-brain/main.py
-    code/ /opt/fly-brain/code/
-    data/ /opt/fly-brain/data/
+    code /opt/fly-brain/code
+    data /opt/fly-brain/data
 
 %post
+    # ---- Verify file layout ----
+    ls /opt/fly-brain/code/benchmark.py
+
     # ---- System packages ----
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -82,7 +85,7 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
 
 %runscript
     cd /opt/fly-brain
-    exec python main.py "$@"
+    exec /opt/miniconda3/envs/brain-fly/bin/python main.py "$@"
 
 %help
     Drosophila fly brain LIF benchmark container.
