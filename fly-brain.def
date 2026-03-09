@@ -64,6 +64,7 @@ From: nvidia/cuda:13.1.1-cudnn-devel-ubuntu24.04
 
     # ---- Build NEST GPU from source (optional: --nestgpu backend) ----
     cd /tmp
+    rm -rf nest-gpu nest-gpu-build
     git clone https://github.com/nest/nest-gpu.git
     mkdir nest-gpu-build && cd nest-gpu-build
 
